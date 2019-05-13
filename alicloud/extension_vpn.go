@@ -18,6 +18,7 @@ const (
 	VPN_ENC_AES_3DES    = string("3des")
 	VPN_AUTH_MD5        = string("md5")
 	VPN_AUTH_SHA        = string("sha1")
+	VPN_AUTH_SHA2       = string("sha256")
 	VPN_PFS_G1          = string("group1")
 	VPN_PFS_G2          = string("group2")
 	VPN_PFS_G5          = string("group5")

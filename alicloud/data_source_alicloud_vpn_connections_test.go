@@ -30,6 +30,8 @@ func TestAccAlicloudVpnConnectionsDataSource_basic(t *testing.T) {
 					resource.TestCheckResourceAttr(
 						"data.alicloud_vpn_connections.foo", "connections.0.ike_config.0.ike_auth_alg", "sha1"),
 					resource.TestCheckResourceAttr(
+						"data.alicloud_vpn_connections.foo", "connections.0.ike_config.0.ike_auth_alg", "sha256"),
+					resource.TestCheckResourceAttr(
 						"data.alicloud_vpn_connections.foo", "connections.0.ike_config.0.ike_enc_alg", "3des"),
 					resource.TestCheckResourceAttr(
 						"data.alicloud_vpn_connections.foo", "connections.0.ike_config.0.ike_version", "ikev2"),
@@ -51,6 +53,8 @@ func TestAccAlicloudVpnConnectionsDataSource_basic(t *testing.T) {
 						"data.alicloud_vpn_connections.foo", "connections.0.ipsec_config.0.ipsec_enc_alg", "aes"),
 					resource.TestCheckResourceAttr(
 						"data.alicloud_vpn_connections.foo", "connections.0.ipsec_config.0.ipsec_auth_alg", "sha1"),
+					resource.TestCheckResourceAttr(
+						"data.alicloud_vpn_connections.foo", "connections.0.ipsec_config.0.ipsec_auth_alg", "sha256"),
 					resource.TestCheckResourceAttr(
 						"data.alicloud_vpn_connections.foo", "connections.0.ipsec_config.0.ipsec_lifetime", "86400"),
 				),
@@ -130,7 +134,7 @@ resource "alicloud_vpn_connection" "foo" {
 	remote_subnet = ["10.4.0.0/24"]
 	effect_immediately = true
 	ike_config = [{
-        ike_auth_alg = "sha1"
+        ike_auth_alg = "sha256"
         ike_enc_alg = "3des"
         ike_version = "ikev2"
         ike_mode = "aggressive"
@@ -144,7 +148,7 @@ resource "alicloud_vpn_connection" "foo" {
 	ipsec_config = [{
         ipsec_pfs = "group2"
         ipsec_enc_alg = "aes"
-        ipsec_auth_alg = "sha1"
+        ipsec_auth_alg = "sha256"
         ipsec_lifetime = 86400
     }]
 }
